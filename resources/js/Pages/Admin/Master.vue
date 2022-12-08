@@ -46,6 +46,17 @@
 
 <script>
 export default {
-    name: "Master"
+    name: "Master",
+    watch:{
+        '$page.props.success' : function(value){
+                this.$toastr.s(value);
+        },
+        '$page.props.info' : function(value){
+                this.$toastr.i(value);
+        },
+        '$page.props.danger' : function(value){
+                this.$toastr.e(value);
+        }
+    }
 }
 </script>
