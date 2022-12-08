@@ -1,5 +1,5 @@
 <template>
-        <div class="container">
+        <div class="container mt-5">
                 <div class="row">
                         <div class="col-md-4">
                                 <div class="card">
@@ -31,8 +31,11 @@
                         </div>
                         <div class="col-md-8">
                                 <div class="card">
+                                        <div class="card-header">
+                                                <slot name="title"/>
+                                        </div>
                                         <div class="card-body">
-                                                <slot/>
+                                                <slot name="body"/>
                                         </div>
                                 </div>
                         </div>
