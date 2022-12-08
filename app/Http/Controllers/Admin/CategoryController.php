@@ -9,6 +9,6 @@ use Inertia\Inertia;
 class CategoryController extends Controller
 {
     public function index(){
-        return Inertia::render("Index");
+        return Inertia::render("Admin/Category/Index");
     }
 }
