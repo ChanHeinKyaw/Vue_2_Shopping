@@ -17,7 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $cat = Category::latest()->paginate(2);
+
+        return Inertia::render('Admin/Category/Index',['cat' => $cat]);
     }
 
     /**
@@ -48,7 +50,7 @@ class CategoryController extends Controller
             'slug' => uniqid() . $slug,
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Category Create Success'); // toastr-and-session-flash
     }
 
     /**
