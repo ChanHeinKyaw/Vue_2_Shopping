@@ -4,6 +4,7 @@
             <h1>Create Category</h1>
         </template>
         <template slot="body">
+            <Link href="/admin/category" class="btn btn-dark btn-sm">Back</Link>
             <form @submit.prevent="store">
                 <div class="form-group">
                     <label for="">Enter Name</label>
@@ -22,9 +23,10 @@
 
 <script>
 import Master from "../Master"
+import { Link } from '@inertiajs/inertia-vue';
 export default {
     name: "create-category",
-    components: { Master },
+    components: { Master,Link },
     props: {errors: Object},
     data(){
         return {
