@@ -21,16 +21,19 @@
           </tr>
         </tbody>
       </table>
+      <Pagination :data="cat.links" /> 
     </template>
   </Master>
 </template>
 
 <script>
 import Master from "../Master.vue";
-import { Link } from '@inertiajs/inertia-vue'
+import Pagination from "../Share/Pagination.vue";
+import { Link } from '@inertiajs/inertia-vue';
+
 export default {
     name: "Index",
     props: {cat: Object},
-    components:{Master,Link}
+    components:{Master,Link,Pagination}
 }
 </script>
