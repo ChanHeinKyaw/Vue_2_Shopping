@@ -10,21 +10,21 @@
                                                                         Admin Management
                                                                 </li>
                                                         </a>
-                                                        <a>
+                                                        <Link href="/admin/category">
                                                                 <li class="list-group-item">
                                                                         Category
                                                                 </li>
-                                                        </a>
-                                                        <a>
+                                                        </Link>
+                                                        <Link href="/admin/product">
                                                                 <li class="list-group-item">
                                                                         Product
                                                                 </li>
-                                                        </a>
-                                                        <a>
+                                                        </Link>
+                                                        <Link href="/admin/order">
                                                                 <li class="list-group-item">
                                                                         Order
                                                                 </li>
-                                                        </a>
+                                                        </Link >
                                                 </ul>
                                         </div>
                                 </div>
@@ -45,8 +45,10 @@
 </template>
 
 <script>
+import { Link } from '@inertiajs/inertia-vue';
 export default {
     name: "Master",
+    components: {Link},
     watch:{
         '$page.props.success' : function(value){
                 this.$toastr.s(value);

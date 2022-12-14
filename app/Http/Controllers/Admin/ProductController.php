@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Inertia\Inertia;
 use App\Models\Category;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $cat = Category::latest()->paginate(2);
 
-        return Inertia::render('Admin/Category/Index',['cat' => $cat]);
     }
 
     /**
@@ -29,7 +26,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/Category/Create');
+        $cat = Category::all();
+
+        return Inertia::render('Admin/Product/Create',['cat' => $cat]);
     }
 
     /**
@@ -41,16 +40,12 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'category_id' => 'required',
             'name' => 'required',
+            'image' => 'required|mimes:png,jpg',
+            'price' => 'required',
+            'description' => 'required',
         ]);
-        
-        $slug = Str::slug($request->name);
-        Category::create([
-            'name' => $request->name,
-            'slug' => uniqid() . $slug,
-        ]);
-
-        return redirect()->back()->with('success','Category Create Success'); // toastr-and-session-flash
     }
 
     /**
@@ -72,11 +67,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $cat = Category::find($id);
-        if(!$cat){
-            return redirect()->back()->with('info','Category Not Exists');
-        }
-        return Inertia::render('Admin/Category/Edit',['cat' => $cat]);
+        //
     }
 
     /**
@@ -88,17 +79,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-        
-        $category = Category::where('id',$id)->first();
-        $slug = Str::slug($request->name);
-        $category->update([
-            'name' => $request->name,
-            'slug' => $slug,
-        ]);
-        return redirect()->back()->with('success','Category Updated Success');
+        //
     }
 
     /**
@@ -109,7 +90,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::where('id',$id)->delete();
-        return redirect()->back()->with('success','Category Deleted Success');
+        //
     }
 }
