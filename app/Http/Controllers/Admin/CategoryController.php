@@ -72,7 +72,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cat = Category::find($id);
+        if(!$cat){
+            return redirect()->back()->with('info','Category Not Exists');
+        }
+        return Inertia::render('Admin/Category/Edit',['cat' => $cat]);
     }
 
     /**
@@ -84,7 +88,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::where('id',$id)->first();
+        $slug = Str::slug($request->name);
+        $category->update([
+            'name' => $request->name,
+            'slug' => $slug,
+        ]);
+        return redirect()->back()->with('success','Category Updated Success');
     }
 
     /**
