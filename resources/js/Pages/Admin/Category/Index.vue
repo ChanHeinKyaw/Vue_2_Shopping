@@ -16,7 +16,7 @@
           <tr v-for="c in cat.data" :key="c.id">
             <td>{{ c.name }}</td>
             <td>
-              <Link href="/" class="badge badge-primary">Update</Link>
+              <Link :href="`/admin/category/${c.id}/edit`" class="badge badge-primary">Edit</Link>
               <span class="badge badge-danger delete-btn" @click="destroy(c.id)">Delete</span>
             </td>
           </tr>
