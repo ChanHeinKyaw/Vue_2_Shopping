@@ -18,7 +18,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-
+        $products = Product::latest()->paginate(10);
+        return Inertia::render('Admin/Product/Index',['products' => $products]);
     }
 
     /**
