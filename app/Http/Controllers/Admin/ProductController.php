@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Inertia\Inertia;
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -46,6 +48,25 @@ class ProductController extends Controller
             'price' => 'required',
             'description' => 'required',
         ]);
+
+        $file = $request->file('image');
+        $name = uniqid() . $file->getClientOriginalName();
+        $file->move(public_path('image/'),$name);
+
+        $image_name = "image/" . $name;
+        
+        Product::create([
+            'slug' => Str::slug($request->name),
+            'category_id' => $request->category_id,
+            'name' => $request->name,
+            'image' => $image_name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'view_count' => 0,
+        ]);
+
+        return redirect()->back()->with('success','Product Create Success');
+        
     }
 
     /**
