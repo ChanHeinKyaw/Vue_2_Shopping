@@ -90,7 +90,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        $cat = Category::all();
+        return Inertia::render('Admin/Product/Edit',['product' => $product, 'cat' => $cat]);
     }
 
     /**
