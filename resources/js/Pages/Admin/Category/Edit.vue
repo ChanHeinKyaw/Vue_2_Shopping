@@ -25,7 +25,7 @@
 import Master from "../Master"
 import { Link } from '@inertiajs/inertia-vue';
 export default {
-    name: "create-category",
+    name: "edit-category",
     components: { Master,Link },
     props: {errors: Object, cat: Object},
     data(){
