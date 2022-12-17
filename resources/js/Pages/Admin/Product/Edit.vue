@@ -5,7 +5,7 @@
         </template>
         <template slot="body">
             <Link href="/admin/product" class="btn btn-dark btn-sm">Back</Link>
-            <form @submit.prevent="update">
+            <form @submit.prevent="update" enctype="multipart/form-data">
                 <!-- Category -->
                 <div class="form-group">
                     <label for="">Choose Category</label>
@@ -46,7 +46,7 @@
                     <small class="text text-danger" v-show="errors.description">{{ errors.description }}</small>
                 </div>
 
-                <button type="submit" class="btn btn-primary" :disabled="loading">Create</button>
+                <button type="submit" class="btn btn-primary" :disabled="loading">Update</button>
                 <div class="spinner-border spinner-border-sm" role="status" v-show="loading">
                     <span class="sr-only">Loading...</span>
                 </div>
@@ -79,13 +79,21 @@ export default {
         this.description = this.product.description;
     },
     methods: {
+        chooseImage(e){
+            this.image = e.target.files[0];
+        },
         update(){
-            this.loading = true,
-            this.$inertia.put('/admin/product/' + this.product.id,
-            {
-                name: this.name,
-                __methods: "PUT",
-            },
+            this.loading = true;
+    
+            const data = new FormData();
+            data.append('category_id',this.category_id);
+            data.append('name',this.name);
+            data.append('price',this.price);
+            data.append('image',this.image);
+            data.append('description',this.description);
+            data.append('_method','PUT');
+
+            this.$inertia.post('/admin/product/' + this.product.id, data,
             {
                 onSuccess: () => {
                     this.loading = false;
