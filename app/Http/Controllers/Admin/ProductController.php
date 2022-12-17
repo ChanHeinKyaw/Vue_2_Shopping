@@ -79,7 +79,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::where('id',$id)->with('category')->first();
+        return Inertia::render('Admin/Product/Detail',['product' => $product]);
     }
 
     /**

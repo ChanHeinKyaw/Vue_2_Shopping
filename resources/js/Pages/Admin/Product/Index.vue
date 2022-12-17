@@ -23,6 +23,7 @@
             <td>{{ product.price }}</td>
             <td>
               <Link :href="`/admin/product/${product.id}/edit`" class="badge badge-primary">Edit</Link>
+              <Link :href="`/admin/product/${product.id}`" class="badge badge-success">Detail</Link>
               <span class="badge badge-danger delete-btn" @click="destroy(product.id)">Delete</span>
             </td>
           </tr>
