@@ -87,7 +87,6 @@ export default {
             this.$inertia.post('/admin/product', data ,
             {
                 onSuccess: () => {
-                    this.name = "";
                     this.loading = false;
                 }
             },

@@ -104,7 +104,29 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        if($request->file('image')){
+            File::delete($product->first()->image);
+            $file = $request->file('image');
+            $name = uniqid() . $file->getClientOriginalName();
+            $image_path = "image/" . $name;
+
+            $file->move(public_path('image/'),$name);
+        }else{
+            $image_path = $product->first()->image;
+        }
+
+        $product->update([
+            'slug' => Str::slug($request->name),
+            'category_id' => $request->category_id,
+            'name' => $request->name,
+            'image' => $image_path,
+            'price' => $request->price,
+            'description' => $request->description,
+            'view_count' => 0,
+        ]);
+
+        return redirect()->back()->with('success','Product Update Success');
     }
 
     /**
