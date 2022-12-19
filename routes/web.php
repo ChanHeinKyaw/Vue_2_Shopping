@@ -1,10 +1,16 @@
 <?php
 
-use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
 
+
+//User
+Route::get('/',[PageController::class,'index']);
+
+//Admin
 Route::get('/admin/login',[AuthController::class,'showLogin']);
 Route::post('/admin/login',[AuthController::class,'postLogin']);
 
