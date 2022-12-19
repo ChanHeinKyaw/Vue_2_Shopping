@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Product;
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function index(){
-        return Inertia::render('Index');
+        $product = Product::with('category')->latest()->paginate(6);
+        return Inertia::render('Index',['product' => $product]);
     }
 }
