@@ -1,10 +1,15 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/admin/login',[AuthController::class,'showLogin']);
+Route::post('/admin/login',[AuthController::class,'postLogin']);
+
 Route::group(["prefix"=>"admin","namespace'=>'admin"],function(){
+    Route::get('/dashboard',[AuthController::class,'dashboard']);
     Route::resource("/category",CategoryController::class);
     Route::resource("/product",ProductController::class);
 });
