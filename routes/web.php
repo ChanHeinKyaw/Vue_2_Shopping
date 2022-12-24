@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CategoryController;
 //User
 Route::get('/',[PageController::class,'index']);
 Route::get('/product/{slug}',[PageController::class,'ProductDetail']);
+Route::get('/product/category/{slug}',[PageController::class,'ProductByCategory']);
 
 //Admin
 Route::get('/admin/login',[AuthController::class,'showLogin']);

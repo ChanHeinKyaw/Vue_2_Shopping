@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Inertia\Inertia;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -16,5 +17,12 @@ class PageController extends Controller
     public function ProductDetail($slug){
         $product = Product::where('slug',$slug)->with('category')->first();
         return Inertia::render('ProductDetail',['product' => $product]);
+    }
+
+    public function ProductByCategory($slug){
+        $cat_id = Category::where('slug',$slug)->first()->id;
+        $product = Product::where('category_id',$cat_id)->with('category')->latest()->paginate(6);
+
+        return Inertia::render('Index',['product' => $product]);
     }
 }

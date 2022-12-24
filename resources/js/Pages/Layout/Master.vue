@@ -127,8 +127,8 @@
                                 >
                                     All Category
                                 </li>
-                                <Link href="#">
-                                    <li class="list-group-item" v-for="c in $page.props.category" :key="c.id">
+                                <Link v-for="c in $page.props.category" :key="c.id" :href="`/product/category/${c.slug}`">
+                                    <li class="list-group-item">
                                         {{ c.name }}
                                         <span class="badge badge-primary float-right">{{ c.product_count }}</span>
                                     </li>
