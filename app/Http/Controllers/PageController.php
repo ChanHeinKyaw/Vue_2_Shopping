@@ -12,4 +12,9 @@ class PageController extends Controller
         $product = Product::with('category')->latest()->paginate(6);
         return Inertia::render('Index',['product' => $product]);
     }
+
+    public function ProductDetail($slug){
+        $product = Product::where('slug',$slug)->with('category')->first();
+        return Inertia::render('ProductDetail',['product' => $product]);
+    }
 }

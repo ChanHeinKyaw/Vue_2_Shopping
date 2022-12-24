@@ -3,7 +3,7 @@
         <div class="row">
             <!-- Loop Product -->
             <div class="col-md-4" v-for="p in product.data" :key="p.id">
-                <a href="#">
+                <a :href="`product/${p.slug}`">
                     <div class="card">
                         <img
                             class="card-img-top"
