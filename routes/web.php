@@ -22,6 +22,9 @@ Route::get('/product/{slug}',[PageController::class,'ProductDetail']);
 Route::get('/product/category/{slug}',[PageController::class,'ProductByCategory']);
 Route::get('/product/search/{search}',[PageController::class,'searchProduct']);
 
+//Add To Cart
+Route::get('/add/cart/{cart}',[PageController::class,'addToCart']);
+
 //Admin
 Route::get('/admin/login',[AuthController::class,'showLogin']);
 Route::post('/admin/login',[AuthController::class,'postLogin']);

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use Inertia\Inertia;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\ProductCart;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -28,5 +31,25 @@ class PageController extends Controller
     public function searchProduct($search){
         $product = Product::where('name','like',"%$search%")->with('category')->latest()->paginate(6);
         return Inertia::render('Index', ['product' => $product]);
+    }
+
+    public function addToCart($cart){
+        $isInCart = ProductCart::where('user_id',Auth::user()->id)->where('product_id',$cart)->first();
+
+        if($isInCart){
+            $isInCart->update([
+                'qty' => DB::raw("qty+1"),
+            ]);
+            return redirect()->back()->with('info','Increased Quantity In Your Cart');
+        }else{           
+            ProductCart::create([
+                'user_id' => Auth::user()->id,
+                'product_id' => $cart,
+                'qty' => 1
+            ]);
+
+            return redirect()->back()->with('success','Added To Cart!');
+        }
+
     }
 }
