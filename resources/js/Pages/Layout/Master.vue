@@ -165,12 +165,21 @@ export default {
             search : "",
         }
     },
+    created(){
+        const {success,error,info} = this.$page.props;
+        if(success){
+            this.$toastr.s(success);
+        }else if(error){
+            this.$toastr.s(error);
+        }else{
+            this.$toastr.s(info);
+        }
+    },  
     components: {Link},
     methods: {
         searchProduct(){
             this.$inertia.get('/product/search/' + this.search);
         }
     }
-
 };
 </script>
