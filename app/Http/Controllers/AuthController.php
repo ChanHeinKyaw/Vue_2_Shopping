@@ -40,6 +40,20 @@ class AuthController extends Controller
         return Inertia::render('Auth/Login');
     }
 
+    public function postLogin(Request $request){
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        //Auth
+        $cre = $request->only('email','password');
+        if(Auth::attempt($cre)){
+            $user = Auth::user();
+            return redirect('/')->with('success','Welcome ' . $user->name);
+        }else{
+            return redirect('/login')->withErrors(["error" => "Email And Password Don't Match With Our Credential"]);
+        }
+    }
 
     public function logout(){
         Auth::logout();
