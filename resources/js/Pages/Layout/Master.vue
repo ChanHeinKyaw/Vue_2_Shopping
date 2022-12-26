@@ -63,10 +63,11 @@
                             </a>
                         </li>
                     </ul>
-                    <form class="form-inline">
+                    <form class="form-inline" @submit.prevent="searchProduct">
                         <input
                             class="form-control mr-sm-2"
-                            type="search"
+                            type="text"
+                            v-model="search"
                             placeholder="Search"
                             aria-label="Search"
                         />
@@ -127,6 +128,11 @@
                                 >
                                     All Category
                                 </li>
+                                <Link href="/">
+                                    <li class="list-group-item">
+                                        All
+                                    </li>
+                                </Link>
                                 <Link v-for="c in $page.props.category" :key="c.id" :href="`/product/category/${c.slug}`">
                                     <li class="list-group-item">
                                         {{ c.name }}
@@ -154,6 +160,17 @@
 import { Link } from '@inertiajs/inertia-vue';
 export default {
     name: "Master",
+    data(){
+        return {
+            search : "",
+        }
+    },
     components: {Link},
+    methods: {
+        searchProduct(){
+            this.$inertia.get('/product/search/' + this.search);
+        }
+    }
+
 };
 </script>

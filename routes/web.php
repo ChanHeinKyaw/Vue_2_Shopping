@@ -12,6 +12,10 @@ Route::get('/',[PageController::class,'index']);
 Route::get('/product/{slug}',[PageController::class,'ProductDetail']);
 Route::get('/product/category/{slug}',[PageController::class,'ProductByCategory']);
 
+
+//Search
+Route::get('/product/search/{search}',[PageController::class,'searchProduct']);
+
 //Admin
 Route::get('/admin/login',[AuthController::class,'showLogin']);
 Route::post('/admin/login',[AuthController::class,'postLogin']);
