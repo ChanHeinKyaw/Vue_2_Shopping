@@ -52,15 +52,15 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a
-                                class="nav-link disabled"
-                                href="#"
+                            <Link
+                                class="nav-link"
+                                href="/cart"
                                 tabindex="-1"
                                 aria-disabled="true"
                             >
                                 Cart
                                 <small class="badge badge-danger">{{ $page.props.cart }}</small>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                     <form class="form-inline" @submit.prevent="searchProduct">

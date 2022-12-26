@@ -52,4 +52,9 @@ class PageController extends Controller
         }
 
     }
+
+    public function viewCart(){
+        $cart_datas = ProductCart::where('user_id',Auth::user()->id)->with('product')->latest()->paginate(10);
+        return Inertia::render('ViewCart',['cart_datas' => $cart_datas ]);
+    }
 }

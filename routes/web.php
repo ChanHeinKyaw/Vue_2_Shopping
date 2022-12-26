@@ -22,6 +22,8 @@ Route::get('/product/{slug}',[PageController::class,'ProductDetail']);
 Route::get('/product/category/{slug}',[PageController::class,'ProductByCategory']);
 Route::get('/product/search/{search}',[PageController::class,'searchProduct']);
 
+//Cart List
+Route::get('/cart',[PageController::class,'viewCart']);
 //Add To Cart
 Route::get('/add/cart/{cart}',[PageController::class,'addToCart']);
 
