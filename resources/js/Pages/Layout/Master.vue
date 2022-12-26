@@ -59,7 +59,7 @@
                                 aria-disabled="true"
                             >
                                 Cart
-                                <small class="badge badge-danger">7</small>
+                                <small class="badge badge-danger">{{ $page.props.cart }}</small>
                             </a>
                         </li>
                     </ul>

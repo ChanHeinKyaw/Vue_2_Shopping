@@ -22,10 +22,13 @@
                                         >{{ p.price }}ks</a
                                     >
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-8">
                                     <a href="" class="badge badge-warning"
                                         >{{ p.category.name }}</a
                                     >
+                                    <Link :href="`/add/cart/${p.id}`" class="float-right">
+                                        <i class="fa-solid fa-cart-shopping text-danger"></i>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
