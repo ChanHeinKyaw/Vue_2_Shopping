@@ -169,13 +169,13 @@ export default {
         }
     },
     created(){
-        const {success,error,info} = this.$page.props;
+        const {success,danger,info} = this.$page.props;
         if(success){
             this.$toastr.s(success);
-        }else if(error){
-            this.$toastr.s(error);
+        }else if(danger){
+            this.$toastr.e(danger);
         }else{
-            this.$toastr.s(info);
+            this.$toastr.i(info);
         }
     },  
     components: {Link},
