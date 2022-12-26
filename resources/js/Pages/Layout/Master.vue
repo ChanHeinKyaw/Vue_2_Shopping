@@ -3,7 +3,7 @@
         <!-- Header -->
         <div class="container-fluid" id="header">
             <nav class="navbar navbar-expand-lg">
-                <a class="navbar-brand text-white" href="#">MM-Shop</a>
+                <Link class="navbar-brand text-white" href="/">MM-Shop</Link>
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -22,7 +22,7 @@
                 >
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home </a>
+                            <Link class="nav-link" href="/">Home </Link>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Your Order</a>
@@ -39,16 +39,16 @@
                             >
                                 User
                             </a>
-                            <div
-                                class="dropdown-menu"
-                                aria-labelledby="navbarDropdown"
-                            >
-                                <a class="dropdown-item" href="#">Login</a>
-                                <a class="dropdown-item" href="#">Register</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                                <div v-if="!$page.props.auth">
+                                    <Link class="dropdown-item" href="/login">Login</Link>
+                                    <Link class="dropdown-item" href="/register">Register</Link>
+                                </div>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"
-                                    >Welcome Guy!</a
-                                >
+                                <div  v-if="$page.props.auth">
+                                    <Link class="dropdown-item" href="#">{{ $page.props.auth.name }}</Link>
+                                    <Link class="dropdown-item" href="/logout">Logout</Link>
+                                </div>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -88,8 +88,11 @@
                             quasi tempore placeat aliquam autem, a soluta nisi
                             totam temporibus dolorem!
                         </p>
-                        <a href="" class="btn btn-outline-primary">SignUp</a>
-                        <a href="" class="btn btn-primary">Login</a>
+                        <div v-if="!$page.props.auth">
+                            <Link href="/login" class="btn btn-primary">Login</Link>
+                            <Link href="/register" class="btn btn-outline-primary">SignUp</Link>
+                        </div>
+                        <h1 v-if="$page.props.auth">Welcome {{ $page.props.auth.name }}</h1>
                     </div>
                     <div class="col-md-6 text-center">
                         <img
