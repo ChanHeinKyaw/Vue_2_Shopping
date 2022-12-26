@@ -26,7 +26,7 @@ class PageController extends Controller
     }
 
     public function searchProduct($search){
-        $product = Product::where('name','like',"$search")->with('category')->latest()->paginate(6);
+        $product = Product::where('name','like',"%$search%")->with('category')->latest()->paginate(6);
         return Inertia::render('Index', ['product' => $product]);
     }
 }
