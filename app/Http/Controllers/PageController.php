@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Inertia\Inertia;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -24,5 +23,10 @@ class PageController extends Controller
         $product = Product::where('category_id',$cat_id)->with('category')->latest()->paginate(6);
 
         return Inertia::render('Index',['product' => $product]);
+    }
+
+    public function searchProduct($search){
+        $product = Product::where('name','like',"$search")->with('category')->latest()->paginate(6);
+        return Inertia::render('Index', ['product' => $product]);
     }
 }
