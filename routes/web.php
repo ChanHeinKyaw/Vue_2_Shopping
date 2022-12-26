@@ -26,7 +26,7 @@ Route::get('/product/search/{search}',[PageController::class,'searchProduct']);
 Route::get('/admin/login',[AuthController::class,'showLogin']);
 Route::post('/admin/login',[AuthController::class,'postLogin']);
 
-Route::group(["prefix"=>"admin","namespace'=>'admin"],function(){
+Route::group(["prefix"=>"admin","namespace'=>'admin","middleware" => "Admin"],function(){
     Route::get('/dashboard',[AuthController::class,'dashboard']);
     Route::resource("/category",CategoryController::class);
     Route::resource("/product",ProductController::class);
