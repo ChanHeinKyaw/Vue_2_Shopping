@@ -14,6 +14,8 @@ Route::post('/register',[UserAuthController::class,'postRegister']);
 Route::get('/login',[UserAuthController::class,'showLogin']);
 Route::post('/login',[UserAuthController::class,'postLogin']);
 
+Route::get('/logout',[UserAuthController::class,'logout']);
+
 //User
 Route::get('/',[PageController::class,'index']);
 Route::get('/product/{slug}',[PageController::class,'ProductDetail']);
