@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AuthController as UserAuthController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\OrderController;
 
 //Auth
 Route::get('/register',[UserAuthController::class,'showRegister']);
@@ -29,6 +30,9 @@ Route::get('/add/cart/{cart}',[PageController::class,'addToCart']);
 //Check Out
 Route::get('/checkout', [PageController::class, 'viewCheckOut']);
 Route::post('/checkout', [PageController::class, 'checkOut']);
+//Order List
+Route::get('/order/pending', [OrderController::class, 'pending']);
+Route::get('/order/complete', [OrderController::class, 'complete']);
 
 //Admin
 Route::get('/admin/login',[AuthController::class,'showLogin']);

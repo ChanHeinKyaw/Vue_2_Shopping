@@ -112,9 +112,18 @@
                     <div class="card">
                         <div class="card-body">
                             <ul class="list-group">
-                                <li class="list-group-item bg-dark text-white">
-                                    Your Order List
-                                </li>
+                                <Link href="order/pending">
+                                    <li class="list-group-item bg-dark text-white">
+                                        Your Pending Order List
+                                    </li>
+                                </Link>
+
+                                <Link href="order/complete">
+                                    <li class="list-group-item bg-dark text-white">
+                                        Your Complete Order List
+                                    </li>
+                                </Link>
+                                
                                 <li
                                     class="list-group-item bg-danger text-white"
                                 >
