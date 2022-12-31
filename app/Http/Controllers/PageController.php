@@ -81,4 +81,9 @@ class PageController extends Controller
 
         return redirect('/')->with('success', 'Checkout success! We will call back soon');
     }
+
+    public function showProfile(){
+        $user = Auth::user();
+        return Inertia::render('Profile',['user' => $user]);
+    }
 }

@@ -124,11 +124,11 @@
                                     </li>
                                 </Link>
                                 
-                                <li
-                                    class="list-group-item bg-danger text-white"
-                                >
-                                    Your Profile Info
-                                </li>
+                                <Link href="/profile">
+                                    <li class="list-group-item bg-danger text-white">
+                                        Your Profile Info
+                                    </li>
+                                </Link>
                             </ul>
                         </div>
                     </div>

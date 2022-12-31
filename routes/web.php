@@ -34,6 +34,8 @@ Route::group(['middleware'=>'AuthUser'],function(){
     //Order List
     Route::get('/order/pending', [OrderController::class, 'pending']);
     Route::get('/order/complete', [OrderController::class, 'complete']);
+    //Profile Edit And Update
+    Route::get('/profile', [PageController::class, 'showProfile']);
 });
 
 //Admin
