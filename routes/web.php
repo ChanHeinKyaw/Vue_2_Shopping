@@ -36,6 +36,7 @@ Route::group(['middleware'=>'AuthUser'],function(){
     Route::get('/order/complete', [OrderController::class, 'complete']);
     //Profile Edit And Update
     Route::get('/profile', [PageController::class, 'showProfile']);
+    Route::post('/profile', [PageController::class, 'updateProfile']);
 });
 
 //Admin

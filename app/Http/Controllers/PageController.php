@@ -10,6 +10,7 @@ use App\Models\ProductOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PageController extends Controller
 {
@@ -85,5 +86,24 @@ class PageController extends Controller
     public function showProfile(){
         $user = Auth::user();
         return Inertia::render('Profile',['user' => $user]);
+    }
+
+    public function updateProfile(Request $request){
+        $user = Auth::user();
+        if($request->password){
+            $user->update([
+                'name' => $request->name,
+                'email'=> $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            Auth::logout();
+            return redirect('/')->with('success','Change Successfully! Please Login');
+        }else{
+            $user->update([
+                'name' => $request->name,
+                'email'=> $request->email,
+            ]);
+            return redirect()->back()->with('success','Profile Update Success');
+        }
     }
 }

@@ -3,6 +3,7 @@
         <template>
             <div class="card">
                 <h4 class="card-header">Profile</h4>
+                <div class="alert alert-success" v-show="$page.props.success">{{ $page.props.success }}</div>
                 <div class="card-body">
                     <form @submit.prevent="changeProfile">
                         <div class="form-group">
@@ -64,7 +65,7 @@ export default {
     },
     methods: {
         changeProfile() {
-            const data = { phone: this.name, address: this.email,password: this.password };
+            const data = { name: this.name, email: this.email,password: this.password };
             this.$inertia.post("/profile", data, {
                 onStart: () => (this.loading = true),
                 onFinish: () => (this.loading = false),
