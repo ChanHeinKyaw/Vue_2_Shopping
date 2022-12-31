@@ -112,13 +112,13 @@
                     <div class="card">
                         <div class="card-body">
                             <ul class="list-group">
-                                <Link href="order/pending">
+                                <Link href="/order/pending">
                                     <li class="list-group-item bg-dark text-white">
                                         Your Pending Order List
                                     </li>
                                 </Link>
 
-                                <Link href="order/complete">
+                                <Link href="/order/complete">
                                     <li class="list-group-item bg-dark text-white">
                                         Your Complete Order List
                                     </li>
