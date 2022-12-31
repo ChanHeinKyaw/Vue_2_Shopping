@@ -10,6 +10,11 @@
                                                                         Admin Management
                                                                 </li>
                                                         </a>
+                                                        <Link href="/admin/dashboard">
+                                                                <li class="list-group-item">
+                                                                        Dashboard
+                                                                </li>
+                                                        </Link>
                                                         <Link href="/admin/category">
                                                                 <li class="list-group-item">
                                                                         Category
