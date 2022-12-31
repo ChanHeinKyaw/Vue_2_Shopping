@@ -23,16 +23,18 @@ Route::get('/product/{slug}',[PageController::class,'ProductDetail']);
 Route::get('/product/category/{slug}',[PageController::class,'ProductByCategory']);
 Route::get('/product/search/{search}',[PageController::class,'searchProduct']);
 
-//Cart List
-Route::get('/cart',[PageController::class,'viewCart']);
-//Add To Cart
-Route::get('/add/cart/{cart}',[PageController::class,'addToCart']);
-//Check Out
-Route::get('/checkout', [PageController::class, 'viewCheckOut']);
-Route::post('/checkout', [PageController::class, 'checkOut']);
-//Order List
-Route::get('/order/pending', [OrderController::class, 'pending']);
-Route::get('/order/complete', [OrderController::class, 'complete']);
+Route::group(['middleware'=>'AuthUser'],function(){
+    //Cart List
+    Route::get('/cart',[PageController::class,'viewCart']);
+    //Add To Cart
+    Route::get('/add/cart/{cart}',[PageController::class,'addToCart']);
+    //Check Out
+    Route::get('/checkout', [PageController::class, 'viewCheckOut']);
+    Route::post('/checkout', [PageController::class, 'checkOut']);
+    //Order List
+    Route::get('/order/pending', [OrderController::class, 'pending']);
+    Route::get('/order/complete', [OrderController::class, 'complete']);
+});
 
 //Admin
 Route::get('/admin/login',[AuthController::class,'showLogin']);

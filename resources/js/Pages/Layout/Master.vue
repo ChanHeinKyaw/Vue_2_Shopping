@@ -109,7 +109,7 @@
             <div class="row">
                 <!-- For Category and Information -->
                 <div class="col-md-4">
-                    <div class="card">
+                    <div class="card" v-if="$page.props.auth">
                         <div class="card-body">
                             <ul class="list-group">
                                 <Link href="/order/pending">
