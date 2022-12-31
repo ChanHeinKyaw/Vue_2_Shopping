@@ -6,6 +6,8 @@ use Inertia\Inertia;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductCart;
+use App\Models\ProductOrder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -56,5 +58,27 @@ class PageController extends Controller
     public function viewCart(){
         $cart_datas = ProductCart::where('user_id',Auth::user()->id)->with('product')->latest()->paginate(10);
         return Inertia::render('ViewCart',['cart_datas' => $cart_datas ]);
+    }
+
+    public function viewCheckOut()
+    {
+        return Inertia::render('CheckOut');
+    }
+
+    public function checkOut(Request $request)
+    {
+        $carts = ProductCart::where('user_id', Auth::user()->id);
+        foreach ($carts->get() as $cart) {
+            ProductOrder::create([
+                'user_id' => Auth::user()->id,
+                'product_id' => $cart->product_id,
+                'qty' => $cart->qty,
+                'phone' => $request->phone,
+                'address' => $request->address,
+            ]);
+        }
+        $carts->delete();
+
+        return redirect('/')->with('success', 'Checkout success! We will call back soon');
     }
 }

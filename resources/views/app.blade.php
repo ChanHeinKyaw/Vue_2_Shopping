@@ -13,7 +13,7 @@
         href="https://cdn.jsdelivr.net/npm/argon-design-system-free@1.2.0/assets/css/argon-design-system.min.css">
     <style>
         #header {
-            height: 65vh;
+            height: 75vh;
             background: linear-gradient(#007bff, white);
             border-bottom-left-radius: 10%;
             border-bottom-right-radius: 10%;
