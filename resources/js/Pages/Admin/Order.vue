@@ -10,6 +10,8 @@
           <tr>
             <th>User</th>
             <th>Product</th>
+            <th>Phone</th>
+            <th>Address</th>
             <th>Option</th>
           </tr>
         </thead>
@@ -17,6 +19,8 @@
           <tr v-for="order in orders.data" :key="order.id">
             <td>{{ order.user.name }}</td>
             <td>{{ order.product.name }}</td>
+            <td>{{ order.phone }}</td>
+            <td>{{ order.address }}</td>
             <td>
                 <Link :href="`/admin/order/success/${order.id}`" class="badge badge-primary" v-show="!isSuccess">Make Success</Link>
                 <Link :href="`/admin/order/success/${order.id}`" class="badge badge-info" v-show="isSuccess">No Option</Link>
