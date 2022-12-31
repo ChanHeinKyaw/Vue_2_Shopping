@@ -54,6 +54,12 @@ import { Link } from '@inertiajs/inertia-vue';
 export default {
     name: "Master",
     components: {Link},
+    created(){
+        const {success} = this.$page.props;
+        if(success){
+                this.$toastr.s(success);
+        }
+    },
     watch:{
         '$page.props.success' : function(value){
                 this.$toastr.s(value);

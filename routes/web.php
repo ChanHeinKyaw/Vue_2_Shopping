@@ -49,4 +49,5 @@ Route::group(["prefix"=>"admin","namespace'=>'admin","middleware" => "Admin"],fu
     Route::resource("/product",ProductController::class);
     Route::get('/order/pending',[ProductController::class,'pendingOrder']);
     Route::get('/order/success',[ProductController::class,'successOrder']);
+    Route::get('/order/success/{id}',[ProductController::class,'makeSuccess']);
 });

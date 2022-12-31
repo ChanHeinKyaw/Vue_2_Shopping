@@ -147,13 +147,21 @@ class ProductController extends Controller
 
     public function pendingOrder()
     {
-        $orders = ProductOrder::with('product','user')->where('status','pending')->paginate(20);
+        $orders = ProductOrder::with('product','user')->where('status','pending')->latest()->paginate(20);
         return Inertia::render('Admin/Order',['orders' => $orders]);
     }
 
     public function successOrder()
     {
-        $orders = ProductOrder::with('product','user')->where('status','complete')->paginate(20);
+        $orders = ProductOrder::with('product','user')->where('status','complete')->latest()->paginate(20);
         return Inertia::render('Admin/Order',['orders' => $orders]);
+    }
+
+    public function makeSuccess($id){
+        ProductOrder::where('id',$id)->update([
+            'status' => 'complete'
+        ]);
+
+        return redirect()->back()->with('success','Added to complete');
     }
 }
