@@ -26,6 +26,9 @@ Route::get('/product/search/{search}',[PageController::class,'searchProduct']);
 Route::get('/cart',[PageController::class,'viewCart']);
 //Add To Cart
 Route::get('/add/cart/{cart}',[PageController::class,'addToCart']);
+//Check Out
+Route::get('/checkout', [PageController::class, 'viewCheckOut']);
+Route::post('/checkout', [PageController::class, 'checkOut']);
 
 //Admin
 Route::get('/admin/login',[AuthController::class,'showLogin']);
