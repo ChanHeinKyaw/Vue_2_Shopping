@@ -47,4 +47,6 @@ Route::group(["prefix"=>"admin","namespace'=>'admin","middleware" => "Admin"],fu
     Route::get('/dashboard',[AuthController::class,'dashboard']);
     Route::resource("/category",CategoryController::class);
     Route::resource("/product",ProductController::class);
+    Route::get('/order/pending',[ProductController::class,'pendingOrder']);
+    Route::get('/order/success',[ProductController::class,'successOrder']);
 });

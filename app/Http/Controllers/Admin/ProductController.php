@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Inertia\Inertia;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Str;
+use App\Models\ProductOrder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -142,5 +143,17 @@ class ProductController extends Controller
         File::delete($product->first()->image);
         $product->delete();
         return redirect()->back()->with('success','Delete Success');
+    }
+
+    public function pendingOrder()
+    {
+        $orders = ProductOrder::with('product','user')->where('status','pending')->paginate(20);
+        return Inertia::render('Admin/Order',['orders' => $orders]);
+    }
+
+    public function successOrder()
+    {
+        $orders = ProductOrder::with('product','user')->where('status','complete')->paginate(20);
+        return Inertia::render('Admin/Order',['orders' => $orders]);
     }
 }

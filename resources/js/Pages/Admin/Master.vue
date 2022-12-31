@@ -20,9 +20,14 @@
                                                                         Product
                                                                 </li>
                                                         </Link>
-                                                        <Link href="/admin/order">
+                                                        <Link href="/admin/order/pending">
                                                                 <li class="list-group-item">
-                                                                        Order
+                                                                        Pending Order
+                                                                </li>
+                                                        </Link >
+                                                        <Link href="/admin/order/success">
+                                                                <li class="list-group-item">
+                                                                        Pending Success
                                                                 </li>
                                                         </Link >
                                                 </ul>
